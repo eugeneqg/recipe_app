@@ -20,14 +20,13 @@ const Today = () => {
     }
 
     return (
-        <div>
+        <div className="mb-5">
             <Container id="today" fluid="md">
                 <h2>Today's picks</h2>
             </Container>
-            <div className="d-flex gap-5 caroussel-wrapper">
+            <div className="d-flex gap-4 justify-content-center carousel-wrapper">
                 {data()}
             </div>
-
         </div>
     )
 }

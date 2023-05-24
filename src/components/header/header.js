@@ -4,7 +4,7 @@ import "./header.sass";
 
 const Header = () => {
     return (
-        <header className="back mb-4">
+        <header className="back mb-5">
             <NavBar/>
             <Search/>
         </header>
