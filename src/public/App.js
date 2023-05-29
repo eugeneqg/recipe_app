@@ -1,16 +1,21 @@
 import './App.css';
-import Header from '../components/header/header';
-import Today from '../components/today/today';
-import Categories from '../components/categories/categories';
-import RandomRecipe from '../components/random/random';
+import MainPage from '../pages/main-page';
+import RecipePage from '../pages/recipe-page';
+import CategoryPage from '../pages/category-page';
+import { Routes, Route } from 'react-router-dom';
+import NavBar from '../components/header/navbar/navbar';
+import AllCategoriesPage from '../pages/all-categories-page';
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Today/>
-      <Categories/>
-      <RandomRecipe/>
+      <NavBar/>
+      <Routes>
+        <Route path="/" element={<MainPage/>}/>
+        <Route path="recipe-page/:id" element={<RecipePage/>}/>
+        <Route path="category-page/:id" element={<CategoryPage/>}/>
+        <Route path="categories" element={<AllCategoriesPage/>}/>
+      </Routes>
     </div>
   );
 }

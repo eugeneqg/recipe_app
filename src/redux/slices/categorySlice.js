@@ -1,28 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    categories: [
-        {idCategory: 1, strCategoryThumb: "", strCategory: ""},
-        {idCategory: 2, strCategoryThumb: "", strCategory: ""},
-        {idCategory: 3, strCategoryThumb: "", strCategory: ""},
-        {idCategory: 4, strCategoryThumb: "", strCategory: ""},
-        {idCategory: 5, strCategoryThumb: "", strCategory: ""},
-        {idCategory: 6, strCategoryThumb: "", strCategory: ""},
-        {idCategory: 7, strCategoryThumb: "", strCategory: ""},
-        {idCategory: 8, strCategoryThumb: "", strCategory: ""}
+    meals: [
+        {
+            strMeal: "",
+            strMealThumb: "",
+            idMeal: ""
+        }
     ]
 }
 
 export const categorySlice = createSlice({
-    name: "categories",
+    name: "category",
     initialState,
     reducers: {
-        getCategories: (state, action) => {
-            state.categories = action.payload; 
+        getCategory: (state, action) => {
+            state.meals = action.payload;
+        },
+        clearCategory: (state) => {
+            state = initialState;
         }
-
     }
 });
 
-export const {getCategories} = categorySlice.actions;
+export const {getCategory, clearCategory} = categorySlice.actions;
 export default categorySlice.reducer;

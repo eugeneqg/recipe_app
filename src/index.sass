@@ -15,6 +15,27 @@ h2
     margin-bottom: 20px
     color: #242E20
 
+.margin-top
+    margin-top: 80px
+
+.title-link-wrapper
+    position: relative
+
+.title-link
+    text-decoration: none
+
+    &::before
+        content: ""
+        position: absolute
+        bottom: -2px
+        left: 0
+        height: 2px
+        width: 100%
+        background-color: rgba(217, 217, 217, 0.10)
+
+    &:hover::before
+        // width: 100%
+
 @media screen and (min-width: 1200px) 
     h1
         font-size: 48px

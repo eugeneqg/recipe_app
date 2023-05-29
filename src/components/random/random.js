@@ -5,6 +5,7 @@ import GetData from "../../services/services";
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { getRandomRecipe } from "../../redux/slices/randomSlice";
+import loader from "../../public/img/loader.svg";
 import "./random.sass";
 
 const RandomRecipe = () => {
@@ -17,29 +18,46 @@ const RandomRecipe = () => {
         GetData.getData("https://www.themealdb.com/api/json/v1/1/random.php")
             .then(data => {
                 dispatch(getRandomRecipe(...data.meals));
-                console.log(randomRecipe);
+                setIsLoaded(true);
             })
             .catch(e => {
                 throw new Error("Couldn't fetch a random recipe");
             })
     }, [dispatch]);
 
+    const recipe = isLoaded ?
+        <Row >
+            <Col md={5}>
+                <div className="random-pic-wrapper d-flex align-items-center mb-3">
+                    <img src={randomRecipe.strMealThumb} alt={randomRecipe.strMeal} className="img-fluid"></img>
+                </div>
+            </Col>
+            <Col md={7} className="d-flex align-items-center">
+                <div className="text-content">
+                    <h3 className="w-100">{randomRecipe.strMeal}</h3>
+                    <p className="w-100 ">{randomRecipe.strInstructions ? randomRecipe.strInstructions.slice(0, 300) + "..." : "Loading"}</p>
+                    <button>Full recipe</button>
+                </div>
+            </Col>
+        </Row> :
+        <Row>
+            <Col md={5}>
+                <div className="random-pic-wrapper d-flex align-items-center justify-content-center">
+                    <img src={loader} alt={randomRecipe.strMeal} className="img-fluid"></img>
+                </div>
+            </Col>
+            <Col md={7} className="d-flex align-items-center">
+                <div className="text-content">
+                    <h3 className="w-100">{randomRecipe.strMeal}</h3>
+                    <p className="w-100 ">{randomRecipe.strInstructions ? randomRecipe.strInstructions.slice(0, 300) + "..." : "Loading"}</p>
+                </div>
+            </Col>
+        </Row>         
+
     return (
         <Container fluid="md" className="mb-5">
             <h2>Let’s try something random!</h2>
-            <Row>
-                <Col md={5}>
-                    <div className="random-pic-wrapper d-flex align-items-center">
-                        <img src={randomRecipe.strMealThumb} alt={randomRecipe.strMeal} className="img-fluid"></img>
-                    </div>
-                </Col>
-                <Col className="d-flex align-items-center">
-                    <div className="text-content">
-                        <h3 className="w-100">{randomRecipe.strMeal}</h3>
-                        <p className="w-100 ">{randomRecipe.strInstructions ? randomRecipe.strInstructions.slice(0, 300) + "..." : "Loading"}</p>
-                    </div>
-                </Col>
-            </Row>
+            {recipe}
         </Container>
     )
 }

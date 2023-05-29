@@ -15,7 +15,6 @@ const Search = () => {
     const dispatch = useDispatch();
 
     const handler = (e) => {
-        console.log(e.target.value)
         setInput(e.target.value)
     }
 
@@ -24,10 +23,9 @@ const Search = () => {
         GetData.getData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`)
             .then(res => {
                 dispatch(getResults(res.meals))
-                console.log(searchResults)
             });
 
-    }, [input]);
+    }, [input, dispatch]);
 
     
     return (
