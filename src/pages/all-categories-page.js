@@ -3,6 +3,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import GetData from "../services/services";
+import { NavLink } from "react-router-dom";
+import loader from "../public/img/loader.svg";
 
 const AllCategoriesPage = () => {
 
@@ -23,15 +25,25 @@ const AllCategoriesPage = () => {
     const categories = areLoaded ?
         categoriesData.map(cat => {
             return (
-                <div>{cat.strCategory}</div>
+            <NavLink style={{ textDecoration: 'none', color: "black" }} to={`/category-page/${cat.strCategory}`} className="d-flex justify-content-center align-items-center ">
+                <div className="back-post d-flex align-items-center gap-3" key={cat.strCategory}>
+                    <img  src={cat.strCategoryThumb} alt={cat.strCategoryThumb}></img>
+                    {cat.strCategory.toUpperCase()}
+                </div>
+            </NavLink>
             )
         }) :
-        null
+        <img src={loader} alt="loading"></img>
 
     return (
 
-        <Container fluid="md">
-            {categories}
+        <Container fluid="md" className="margin-top">
+                    <h2>All Categories</h2>
+                    <Row className="">
+                        <Col md={12} className="category-grid">
+                            {categories}
+                        </Col>
+                    </Row>
         </Container>
     )
 }

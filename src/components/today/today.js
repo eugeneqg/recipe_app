@@ -22,7 +22,7 @@ const Today = () => {
     return (
         <div className="mb-5">
             <Container id="today" fluid="md">
-                <h2>Today's picks</h2>
+                <div className="title-link-wrapper"><h2 className="title-link">Today's picks</h2></div>
             </Container>
             <div className="d-flex gap-4 justify-content-center carousel-wrapper">
                 {data()}

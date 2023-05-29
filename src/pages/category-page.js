@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import React from "react";
 import GetData from "../services/services";
 import RecipeCard from "../components/recipe-card/recipe-card";
+import loader from "../public/img/loader.svg";
 import "./category-page.sass"; 
 
 const CategoryPage = () => {
@@ -41,18 +42,18 @@ const CategoryPage = () => {
         } else {
             return (
                 // <LoadingCategory cat={cat} loader={loader}/> 
-                <p>hello</p>
+                <img src={loader} alt="loading"></img>
             )
         }
     });
 
-    const pagination = (num) => {
-        for (let i = 1; i <= num; i++) {
-            return (
-                <p>{i}</p>
-            )
-        }
-    }
+    // const pagination = (num) => {
+    //     for (let i = 1; i <= num; i++) {
+    //         return (
+    //             <p>{i}</p>
+    //         )
+    //     }
+    // }
 
     return (
         <Container fluid="md" className="margin-top">
@@ -61,7 +62,7 @@ const CategoryPage = () => {
                         <Col md={12} className="category-grid">
                             {recipeList}
                         </Col>
-                        <p>{pagination(pageNumbers)}</p>
+                        {/* <p>{pagination(pageNumbers)}</p> */}
                     </Row>
         </Container>
     )

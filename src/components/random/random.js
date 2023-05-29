@@ -56,7 +56,7 @@ const RandomRecipe = () => {
 
     return (
         <Container fluid="md" className="mb-5">
-            <h2>Let’s try something random!</h2>
+            <div className="title-link-wrapper"><h2 className="title-link">Let’s try something random!</h2></div>
             {recipe}
         </Container>
     )

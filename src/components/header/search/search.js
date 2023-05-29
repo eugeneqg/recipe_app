@@ -6,6 +6,7 @@ import React from "react";
 import GetData from "../../../services/services";
 import { getResults } from "../../../redux/slices/searchSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const Search = () => {
 
@@ -25,8 +26,10 @@ const Search = () => {
                 dispatch(getResults(res.meals))
             });
 
-    }, [input, dispatch]);
+            input ? document.querySelector('.search-button').disabled = false : document.querySelector('.search-button').disabled = true;
 
+
+    }, [input, dispatch]);
     
     return (
         <Container>
@@ -40,7 +43,7 @@ const Search = () => {
                             </form>
                         </Col>
                         <Col className="m-0" xs={3}>
-                            <button className="search-button" form="search-form" type="submit">Search</button>
+                            <NavLink to={"search"}><button className="search-button" form="search-form" type="submit" disabled>Search</button></NavLink>
                         </Col>
                     </Row>
                 </Col>
